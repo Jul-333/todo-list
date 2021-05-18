@@ -1,0 +1,83 @@
+.form-block {
+    position: relative;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    width: 285px;
+    margin-bottom: 10px;
+}
+
+.input {
+    font-weight: 700;
+    width: 250px;
+    height: 30px;
+    padding: 10px;
+    color: black;
+    border: none;
+    outline: none;
+    background-color: #dea6b512;
+    border-bottom: 2px solid gray;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.input-button {
+    width: 35px;
+    cursor: pointer;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.icon-arrow {
+    color: white;
+    font-size: 19px;
+}
+
+.error-message {
+    color: red;
+    font-size: 13px;
+    position: absolute;
+    bottom: 31px;
+    left: 2px;
+}
+
+
+/* THEME PINK */
+.pink .input:focus {
+    border-bottom: 2px solid #ef3a69;
+}
+
+.pink .input-button {
+ background-color: #ef3a69;
+}
+
+
+.pink .input-button:hover {
+    background-color: #dc3964;
+}
+
+.pink .input-button:active {
+    background-color: #af3051;
+}
+
+/* THEME BLUE */
+.blue .input:focus {
+    border-bottom: 2px solid #3da1e2;
+}
+
+.blue .input-button {
+    background-color:  #3da1e2;
+}
+
+
+.blue .input-button:hover {
+    background-color: #3285bb;
+}
+
+.blue .input-button:active {
+    background-color: #286d9a;
+}

@@ -1,25 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { ItemElementInterface } from './utils/interfaces';
+import List from './components/List/List';
+import Form from './components/Form/Form';
+import Settings from './components/Settings/Settings'
+import { ThemeContext, Theme } from './utils/themeContext';
 
-function App() {
+const App = () => {
+  const [todos, setToDos] = useState<ItemElementInterface[]>([]);
+  const [theme, setTheme] = useState<Theme>(Theme.Pink)
+
+
+  const handleTodoCreate = (todo: ItemElementInterface) => {
+    const newToDo: ItemElementInterface[] = [...todos]
+    newToDo.push(todo);
+    setToDos(newToDo)
+  }
+
+  const handleTodoComplete = (id: number) => {
+    const newToDo: ItemElementInterface[] = [...todos];
+    newToDo.forEach((item) => { if (item.id === id) { item.isCompleted = !item.isCompleted } })
+    setToDos(newToDo)
+  }
+
+  const handleTodoDelete = (id: number) => {
+    const filteredNewTodo: ItemElementInterface[] = todos.filter(item => item.id !== id)
+    setToDos(filteredNewTodo)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <div className="App">
+
+        <h1 className="h1">ToDoList</h1>
+        <div className="wrapper">
+          <div className="table">
+            <Form handleTodoCreate={handleTodoCreate} />
+            <List
+              todos={todos}
+              handleTodoComplete={handleTodoComplete}
+              handleTodoDelete={handleTodoDelete}
+            />
+          </div>
+          <Settings />
+
+        </div>
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
